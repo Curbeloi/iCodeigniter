@@ -1,6 +1,6 @@
-###################
-¿Qué es iCodeIgniter para iSeries iBM OS (sistema Operativo)?
-###################
+*******************
+ ¿Qué es iCodeIgniter para iSeries iBM OS (sistema Operativo)?
+*******************
 
 CodeIgniter es un Marco de desarrollo de aplicaciones, un conjunto de herramientas para personas
 que construyen sitios web usando PHP. `CodeIgniter Downloads <https://codeigniter.com/download>`_ page.
