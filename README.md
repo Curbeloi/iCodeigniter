@@ -3,7 +3,7 @@
 *******************
 
 CodeIgniter es un Marco de desarrollo de aplicaciones, un conjunto de herramientas para personas
-que construyen sitios web usando PHP. `CodeIgniter Downloads <https://codeigniter.com/download>`_ page.
+que construyen sitios web usando PHP. CodeIgniter Downloads <https://codeigniter.com/download>.
 Por su Parte CodeIgniter para iSeries iBM OS (sistema Operativo), es el mismo Codeigniter modificado para ser usado 
 específicamente en los Sistemas Operativos iSeries AS-400 de iBM. Su objetivo es permitirle desarrollar 
 proyectos mucho más rápido sobre estos OS (sistema Operativo) de forma nativa, proporcionando un rico conjunto de bibliotecas
