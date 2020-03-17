@@ -65,4 +65,4 @@ Licencia
 *******
 
  La misma de Codeigniter:
- <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
+ <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>.
