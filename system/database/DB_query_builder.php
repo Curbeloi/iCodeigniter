@@ -477,6 +477,7 @@ abstract class CI_DB_query_builder extends CI_DB_driver
 				foreach (explode(',', $val) as $v)
 				{
 					$v = trim($v);
+					$v = $this->libdata.'.'.$v;
 					$this->_track_aliases($v);
 
 					$this->qb_from[] = $v = $this->protect_identifiers($v, TRUE, NULL, FALSE);
@@ -491,7 +492,7 @@ abstract class CI_DB_query_builder extends CI_DB_driver
 			else
 			{
 				$val = trim($val);
-
+                $val = $this->libdata.'.'.$val;
 				// Extract any aliases that might exist. We use this information
 				// in the protect_identifiers to know whether to add a table prefix
 				$this->_track_aliases($val);
@@ -587,7 +588,7 @@ abstract class CI_DB_query_builder extends CI_DB_driver
 		// Do we want to escape the table name?
 		if ($escape === TRUE)
 		{
-            $this->libdata.".".$table = $this->protect_identifiers($table, TRUE, NULL, FALSE);
+            $table = $this->protect_identifiers($table, TRUE, NULL, FALSE);
 		}
 
 		// Assemble the JOIN statement
@@ -1333,7 +1334,7 @@ abstract class CI_DB_query_builder extends CI_DB_driver
 		if ($table !== '')
 		{
 			$this->_track_aliases($table);
-			$this->from($this->libdata.".".$table);
+			$this->from($table);
 		}
 
 		$select = $this->_compile_select();
@@ -1364,7 +1365,7 @@ abstract class CI_DB_query_builder extends CI_DB_driver
 		if ($table !== '')
 		{
 			$this->_track_aliases($table);
-			$this->from($this->libdata.".".$table);
+			$this->from($table);
 		}
 
 		if ( ! empty($limit))
@@ -1393,7 +1394,7 @@ abstract class CI_DB_query_builder extends CI_DB_driver
 		if ($table !== '')
 		{
 			$this->_track_aliases($table);
-			$this->from($this->libdata.".".$table);
+			$this->from($table);
 		}
 
 		// ORDER BY usage is often problematic here (most notably
@@ -1443,7 +1444,7 @@ abstract class CI_DB_query_builder extends CI_DB_driver
 	{
 		if ($table !== '')
 		{
-			$this->from($this->libdata.".".$table);
+			$this->from($table);
 		}
 
 		if ($where !== NULL)
@@ -1530,7 +1531,7 @@ abstract class CI_DB_query_builder extends CI_DB_driver
 	 */
 	protected function _insert_batch($table, $keys, $values)
 	{
-		return 'INSERT INTO '.$this->libdata.".".$table.' ('.implode(', ', $keys).') VALUES '.implode(', ', $values);
+		return 'INSERT INTO '. $this->libdata.'.'.$table.' ('.implode(', ', $keys).') VALUES '.implode(', ', $values);
 	}
 
 	// --------------------------------------------------------------------
@@ -1682,7 +1683,7 @@ abstract class CI_DB_query_builder extends CI_DB_driver
 
 		if ($table !== '')
 		{
-			$this->qb_from[0] = $this->libdata.".".$table;
+			$this->qb_from[0] = $table;
 		}
 		elseif ( ! isset($this->qb_from[0]))
 		{
@@ -1722,7 +1723,7 @@ abstract class CI_DB_query_builder extends CI_DB_driver
 				return ($this->db_debug) ? $this->display_error('db_must_set_table') : FALSE;
 			}
 
-			$table = $this->libdata.".".$this->qb_from[0];
+			$table = $this->qb_from[0];
 		}
 
 		$sql = $this->_replace($this->protect_identifiers($table, TRUE, NULL, FALSE), array_keys($this->qb_set), array_values($this->qb_set));
@@ -1745,7 +1746,7 @@ abstract class CI_DB_query_builder extends CI_DB_driver
 	 */
 	protected function _replace($table, $keys, $values)
 	{
-		return 'REPLACE INTO '.$this->libdata.".".$table.' ('.implode(', ', $keys).') VALUES ('.implode(', ', $values).')';
+		return 'REPLACE INTO '.$table.' ('.implode(', ', $keys).') VALUES ('.implode(', ', $values).')';
 	}
 
 	// --------------------------------------------------------------------
@@ -1786,7 +1787,7 @@ abstract class CI_DB_query_builder extends CI_DB_driver
 			return FALSE;
 		}
 
-		$sql = $this->_update($this->qb_from[0], $this->qb_set);
+		$sql = $this->_update($this->libdata.'.'.$this->qb_from[0], $this->qb_set);
 
 		if ($reset === TRUE)
 		{
@@ -1834,7 +1835,7 @@ abstract class CI_DB_query_builder extends CI_DB_driver
 			$this->limit($limit);
 		}
 
-		$sql = $this->_update($this->qb_from[0], $this->qb_set);
+		$sql = $this->_update($this->libdata.'.'.$this->qb_from[0], $this->qb_set);
 		$this->_reset_write();
 		return $this->query($sql);
 	}
@@ -1860,7 +1861,7 @@ abstract class CI_DB_query_builder extends CI_DB_driver
 
 		if ($table !== '')
 		{
-			$this->qb_from = array($this->protect_identifiers($this->libdata.".".$table, TRUE, NULL, FALSE));
+			$this->qb_from = array($this->protect_identifiers($table, TRUE, NULL, FALSE));
 		}
 		elseif ( ! isset($this->qb_from[0]))
 		{
@@ -1916,7 +1917,7 @@ abstract class CI_DB_query_builder extends CI_DB_driver
 				return ($this->db_debug) ? $this->display_error('db_must_set_table') : FALSE;
 			}
 
-			$table = $this->libdata.".".$this->qb_from[0];
+			$table = $this->qb_from[0];
 		}
 
 		// Batch this baby
@@ -1973,7 +1974,7 @@ abstract class CI_DB_query_builder extends CI_DB_driver
 
 		$this->where($val[$index]['field'].' IN('.implode(',', $ids).')', NULL, FALSE);
 
-		return 'UPDATE '.$this->libdata.".".$table.' SET '.substr($cases, 0, -2).$this->_compile_wh('qb_where');
+		return 'UPDATE '.$table.' SET '.substr($cases, 0, -2).$this->_compile_wh('qb_where');
 	}
 
 	// --------------------------------------------------------------------
@@ -2044,11 +2045,11 @@ abstract class CI_DB_query_builder extends CI_DB_driver
 				return ($this->db_debug) ? $this->display_error('db_must_set_table') : FALSE;
 			}
 
-			$table = $this->libdata.".".$this->qb_from[0];
+			$table = $this->qb_from[0];
 		}
 		else
 		{
-            $this->libdata.".".$table = $this->protect_identifiers($table, TRUE, NULL, FALSE);
+            $table = $this->protect_identifiers($table, TRUE, NULL, FALSE);
 		}
 
 		$sql = $this->_delete($table);
@@ -2077,11 +2078,11 @@ abstract class CI_DB_query_builder extends CI_DB_driver
 				return ($this->db_debug) ? $this->display_error('db_must_set_table') : FALSE;
 			}
 
-			$table = $this->libdata.".".$this->qb_from[0];
+			$table = $this->qb_from[0];
 		}
 		else
 		{
-            $this->libdata.".".$table = $this->protect_identifiers($table, TRUE, NULL, FALSE);
+           $table = $this->protect_identifiers($table, TRUE, NULL, FALSE);
 		}
 
 		$sql = $this->_truncate($table);
@@ -2104,7 +2105,7 @@ abstract class CI_DB_query_builder extends CI_DB_driver
 	 */
 	protected function _truncate($table)
 	{
-		return 'TRUNCATE '.$this->libdata.".".$table;
+		return 'TRUNCATE '.$table;
 	}
 
 	// --------------------------------------------------------------------
@@ -2151,7 +2152,7 @@ abstract class CI_DB_query_builder extends CI_DB_driver
 				return ($this->db_debug) ? $this->display_error('db_must_set_table') : FALSE;
 			}
 
-			$table = $this->libdata.".".$this->qb_from[0];
+			$table = $this->qb_from[0];
 		}
 		elseif (is_array($table))
 		{
@@ -2159,14 +2160,14 @@ abstract class CI_DB_query_builder extends CI_DB_driver
 
 			foreach ($table as $single_table)
 			{
-				$this->delete($this->libdata.".".$single_table, $where, $limit, $reset_data);
+				$this->delete($single_table, $where, $limit, $reset_data);
 			}
 
 			return;
 		}
 		else
 		{
-            $this->libdata.".".$table = $this->protect_identifiers($table, TRUE, NULL, FALSE);
+            $table = $this->protect_identifiers($table, TRUE, NULL, FALSE);
 		}
 
 		if ($where !== '')
@@ -2205,7 +2206,7 @@ abstract class CI_DB_query_builder extends CI_DB_driver
 	 */
 	protected function _delete($table)
 	{
-		return 'DELETE FROM '.$this->libdata.".".$table.$this->_compile_wh('qb_where')
+		return 'DELETE FROM '. $this->libdata.'.'.$table.$this->_compile_wh('qb_where')
 			.($this->qb_limit ? ' LIMIT '.$this->qb_limit : '');
 	}
 
@@ -2226,7 +2227,7 @@ abstract class CI_DB_query_builder extends CI_DB_driver
 			$this->display_error('db_table_name_required');
 		}
 
-		return $this->libdata.".".$this->dbprefix.$table;
+		return $table;
 	}
 
 	// --------------------------------------------------------------------

@@ -110,7 +110,7 @@ $config['rest_realm'] = 'REST API';
 |           authorization key
 |
 */
-$config['rest_auth'] = 'basic';
+$config['rest_auth'] = FALSE;
 
 /*
 |--------------------------------------------------------------------------
@@ -211,7 +211,7 @@ $config['auth_library_function'] = '';
 | Array of usernames and passwords for login, if ldap is configured this is ignored
 |
 */
-$config['rest_valid_logins'] = ['admin' => '1234'];
+$config['rest_valid_logins'] = ['ssauto-connect' => 'IPC&B9LF88@x'];
 
 /*
 |--------------------------------------------------------------------------
@@ -299,7 +299,7 @@ $config['rest_database_group'] = 'default';
 | The table name in your database that stores API keys
 |
 */
-$config['rest_keys_table'] = 'F56TK';
+$config['rest_keys_table'] = 'KEYS';
 
 /*
 |--------------------------------------------------------------------------
@@ -415,7 +415,7 @@ $config['rest_enable_logging'] = TRUE;
 | table name to match e.g. my_logs
 |
 */
-$config['rest_logs_table'] = 'F56TL';
+$config['rest_logs_table'] = 'LOGS';
 
 /*
 |--------------------------------------------------------------------------
@@ -448,7 +448,7 @@ $config['rest_enable_access'] = TRUE;
 | table name to match e.g. my_access
 |
 */
-$config['rest_access_table'] = 'F56TA';
+$config['rest_access_table'] = 'ACCESS';
 
 /*
 |--------------------------------------------------------------------------

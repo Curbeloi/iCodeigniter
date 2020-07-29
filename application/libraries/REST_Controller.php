@@ -1189,7 +1189,7 @@ abstract class REST_Controller extends CI_Controller {
                 $this->config->item('rest_logs_table'), [
                 'URI' => $this->uri->uri_string(),
                 'METHOD' => $this->request->method,
-                'PARAMS' => $this->_args ? ($this->config->item('rest_logs_json_params') === TRUE ? json_encode($this->_args) : serialize($this->_args)) : NULL,
+                'PARAMS' => NULL,
                 'API_KEY' => isset($this->rest->key) ? $this->rest->key : '',
                 'IP_ADDRESS' => $this->input->ip_address(),
                 'TIME' => time(),
@@ -2245,11 +2245,11 @@ abstract class REST_Controller extends CI_Controller {
             return false;
         }
 
-        $payload['RESPONSECD'] = $http_code;
+        $payload['RESPONSE_CODE'] = $http_code;
 
         return $this->rest->db->update(
             $this->config->item('rest_logs_table'), $payload, [
-            'id' => $this->_insert_id
+            'ID' => $this->_insert_id
         ]);
     }
 
