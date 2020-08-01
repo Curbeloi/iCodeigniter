@@ -22,13 +22,12 @@ class Authenticate extends CI_Controller
 
         if (!empty($usname) && !empty($uspswd)) 
         {    
-            $rslt = json_decode($this->authenticate_mdl->validateAuth( $usname, $uspswd );
+            $rslt = json_decode($this->authenticate_mdl->validateAuth( $usname, $uspswd ));
             //var_dump($rslt);
             if( $rslt->status )
             {
                 $token = $this->auth->SignIn($rslt);
-                $this->sessionInitialice($token);
-                echo json_encode(['status'=>TRUE, 'message' => $rslt->message, 'view' => 'main' ]);
+                echo json_encode(['status'=>TRUE, 'message' => $rslt->message, 'view' => 'main' , 'token'=>$token ]);
             }
             else
             {
@@ -37,12 +36,7 @@ class Authenticate extends CI_Controller
         }
         else
         {
-            echo json_encode(['status' => FALSE,'data' => null, 'message' => 'Data is required']);
+            echo json_encode(['status' => FALSE,'data' => null, 'message' => 'Use this Framework as a way to quickly start any new project in IBM i with PHP language']);
         }
-    }
-
-    private function sessionInitialice($token)
-    {
-        $this->session->set_userdata('tokenstring', $token);
     }
 }

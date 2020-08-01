@@ -10,6 +10,11 @@ jQuery.extend({
 
         /* intance dom element */
         var $form = $('#form');
+        var messageplace = $(".lead");
+        /* Example message Jquery HMVC function */
+        this.showmessage = function(message) {
+            messageplace.html(message);
+        }
 
         /* submit function */
         $form.submit(function(e) {
@@ -24,16 +29,15 @@ jQuery.extend({
 
         /* Notification true Login */
         this.loginTrue = function(result) {
-			console.log(result);
+            console.log(result);
             localStorage.clear();
             window.location = baseurl + "View/load/" + result.view;
             $("#submit-btn").attr("disabled", true);
         };
 
         /* Notification error Login */
-        this.errorLogin = function(message) 
-        {
-            
+        this.errorLogin = function(message) {
+            //create notification here
         };
 
         this.submitLogin = function() {

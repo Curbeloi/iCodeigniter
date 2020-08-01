@@ -6,9 +6,14 @@ $.use('modules/authenticate/views/authenticate_view');
 $.use('modules/authenticate/models/authenticate_model');
 
 jQuery.extend({
-    authenticateController: function(model, view) 
-    {
+    authenticateController: function(model, view) {
         /* Listen View function  */
+        var data = null;
+        model.authenticate(data);
+        view.showmessage(model.messageReturn());
+        model.clearCache();
+        model.cacheDefoult();
+
         var vlist = $.ViewListener({
             submitLogin: function() {
                 var data = view.returnLogindata();
