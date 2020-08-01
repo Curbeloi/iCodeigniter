@@ -1,24 +1,24 @@
-# ¿Qué es iCodeigniter para iSeries iBM OS (sistema Operativo)?
-iCodeigniter es una versión del framework conocido. Codeigniter, this version has a product tool are the programme that using PHP in the systems iSeries of IBM.
+# What is iCodeigniter for iSeries iBM OS (Operating system)?
+iCodeigniter is a version of the well-known framework. Codeigniter, this version has a product tool are the program that using PHP in the systems iSeries of IBM.
 
-# Versión 1.1
-Esta versión es más que un framework, es un marco de trabajo con una arquitectura definida, listo para iniciar un desarrollo, así que también se puede decir que es un starter en el cual puedes encontrar varias tecnologias agrupadas como son: JWT, HMVC en el BackEnd y Jquery MVC en el FrotEnd entro otros.    
+# Version 1.1
+This version is more than a framework, it is a framework with a defined architecture, ready to start a development, so it can also be said that it is a starter in which you can find various technologies grouped such as: JWT, HMVC in the BackEnd and Jquery MVC in the FrotEnd among others.
 
-# Datos de contacto del desarrollador
+# Developer contact details
 Ing. Hector Curbelo Barrios
 hcurbelo@gmail.com
 
-# Requisitos del servidor
-Se recomienda PHP versión 5.6 o posterior.
-Debería funcionar en 5.3.7 también, pero le recomendamos que NO ejecute
-versiones antiguas de PHP, debido a la seguridad y el rendimiento, pueden tener potenciales
-problemas, así como las características que faltan.
+# Server requirements
+PHP version 5.6 or later is recommended.
+It should work in 5.3.7 as well, but we recommend that you DO NOT run
+older versions of PHP, due to security and performance, may have potential
+problems as well as missing features.
 
-# Instalación
+# Installation
 
-1. Copiar los archivos del framework en el directorio www de tu servidor de aplicaciones dentro del OS AS-400.
-2. Ir al directorio application/config/database.php y editar este archivo.
-3. Configurar las conexiones por ejemplo:
+1. Copy the framework files to the www directory of your application server within OS AS-400.
+2. Go to the application / config / database.php directory and edit this file.
+3. Configure the connections for example:
 
 'hostname' => 'localhost',
 'username' => 'yourusername',
@@ -27,23 +27,23 @@ problemas, así como las características que faltan.
 'dbdriver' => 'db2',
 'dbprefix' => '',
 'libdata' => 'myschema',
-	
 
-4. Con esto puedes usar desde los modelos las sentecias para las cosultas a base de datos que nos 
-proporciona Codeigniter:
 
-$this->db->get('tablename');
+4. With this you can use from the models the sentences for the database queries that we
+Codeigniter provides:
 
-$data = array(
-		'col1' => 'HECTOR T',
-		'col2 => 'HECTOR A',
+$ this-> db-> get ('tablename');
+
+$ data = array (
+'col1' => 'HECTOR T',
+'col2 =>' HECTOR A ',
 );
 
-$this->db->insert('tablename', $data);
-5. En el directorio assets puedes encontrar la estructura del poryecto para el FrontEnd el cual cuenta con un ejemplo.
+$ this-> db-> insert ('tablename', $ data);
+5. In the assets directory you can find the project structure for the FrontEnd which has an example.
 
-# Licencia
+# License
 
- La misma de Codeigniter:
+ The same from Codeigniter:
  <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
 
