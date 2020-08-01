@@ -1,9 +1,8 @@
 # ¿Qué es iCodeigniter para iSeries iBM OS (sistema Operativo)?
 iCodeigniter es una versión del framework conocido. Codeigniter, this version has a product tool are the programme that using PHP in the systems iSeries of IBM.
 
-# Versión 1.0
-Esta versión esta siendo usada en producción con excelentes resultados, pero no se descarta posibles errores 
-sobre todo en el uso del asistente de gestión de Base de Datos (driver db2).  
+# Versión 1.1
+Esta versión es más que un framework, es un marco de trabajo con una arquitectura definida, listo para iniciar un desarrollo, así que también se puede decir que es un starter en el cual puedes encontrar varias tecnologias agrupadas como son: JWT, HMVC en el BackEnd y Jquery MVC en el FrotEnd entro otros.    
 
 # Datos de contacto del desarrollador
 Ing. Hector Curbelo Barrios
@@ -41,6 +40,7 @@ $data = array(
 );
 
 $this->db->insert('tablename', $data);
+5. En el directorio assets puedes encontrar la estructura del poryecto para el FrontEnd el cual cuenta con un ejemplo.
 
 # Licencia
 
